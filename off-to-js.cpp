@@ -93,7 +93,7 @@ void MakeTriangles(vector<string>& lines, unsigned vertices) {
 	points = FindPoints(triLines);
 	polygons = FindPolygons(points, lines, vertices);
 	triangles = PolygonsToTriangles(polygons);
-	/* triangles = ScaleTriangles(triangles); */
+	triangles = ScaleTriangles(triangles);
 
 	cout << "this.triangles = [";
 	for (unsigned j=0; j<triangles.size(); j++) {
@@ -229,23 +229,23 @@ vector<vector<coord>> ScaleTriangles(vector<vector<coord>> triangles) {
 	for (unsigned i=0; i<triangles.size(); i++) {
 		for (unsigned j=0; j<triPoints; j++) {
 			if(triangles[i][j].x < minX)
-				triangles[i][j].x = minX;
+				minX = triangles[i][j].x;
 			if(triangles[i][j].y < minY)
-				triangles[i][j].y = minY;
+				minY = triangles[i][j].y;
 			if(triangles[i][j].z < minZ)
-				triangles[i][j].z = minZ;
+				minZ = triangles[i][j].z;
 		}
 	}
 
 	minX = -1 * minX;
 	minY = -1 * minY;
-	minZ= -1 * minZ;
+	minZ = -1 * minZ;
 
 	for (unsigned k=0; k<triangles.size(); k++) {
 		for (unsigned l=0; l<triPoints; l++) {
-			triangles[k][l].x -= minX;
-			triangles[k][l].y -= minZ;
-			triangles[k][l].z -= minY;
+			triangles[k][l].x += minX;
+			triangles[k][l].y += minZ;
+			triangles[k][l].z += minY;
 		}
 	}
 
@@ -262,9 +262,9 @@ vector<vector<coord>> ScaleTriangles(vector<vector<coord>> triangles) {
 
 	for (unsigned o=0; o<triangles.size(); o++) {
 		for (unsigned p=0; p<triPoints; p++) {
-			triangles[o][p].x *= maxAll;
-			triangles[o][p].y *= maxAll;
-			triangles[o][p].z *= maxAll;
+			triangles[o][p].x *= 1/maxAll;
+			triangles[o][p].y *= 1/maxAll;
+			triangles[o][p].z *= 1/maxAll;
 
 			triangles[o][p].x -= .5;
 			triangles[o][p].y -= .5;
