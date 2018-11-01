@@ -61,7 +61,7 @@ vector<string> ReadLines(ifstream& offFile) {
 	vector<string> lines;
 	string line;
 	while(getline(offFile, line)) {
-		if (line.at(0) != '#') {
+		if (!line.empty() && line.at(0) != '#') {
 			lines.push_back(line);
 		}
 	}
