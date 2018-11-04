@@ -25,7 +25,6 @@ int main(int argc, char **argv) {
 
 	if (argc == 3) {
 		string modelName = argv[1];
-		modelName += "Model";
 		string filename = argv[2];
 		filename = filename.c_str();
 		string line;
@@ -41,7 +40,7 @@ int main(int argc, char **argv) {
 			/* unsigned faces = GetValue(lines[0], 1); */
 
 			cout << "function " << modelName << "() {" << endl;
-			cout << '\t'; 
+			cout << '\t';
 			MakeTriangles(lines, vertices);
 			cout << endl;
 
@@ -52,8 +51,8 @@ int main(int argc, char **argv) {
 	} else {
 		cout << "Error: invalid number of arguments" << endl;
 	}
-  
-    return 0;
+
+	return 0;
 }
 
 // Reads in all lines of a file except for comments into a vector of strings
@@ -110,7 +109,7 @@ void MakeTriangles(vector<string>& lines, unsigned vertices) {
 	cout << "];" << endl;
 
 	MakeBC(triangles);
-	
+
 	/* for (unsigned i=0; i<triLines.size(); i++) */
 	/* 	cout << triLines[i] << endl; */
 }
@@ -175,7 +174,7 @@ vector<vector<coord>> FindPolygons(vector<coord> points, vector<string> lines, u
 		faces = stoi(word);
 		for (int j=0; j<faces; j++) {
 			ss >> word;
-			verts.push_back(stoi(word));			
+			verts.push_back(stoi(word));
 		}
 		for (unsigned k=0; k<verts.size(); k++) {
 			newPoly.push_back(points[verts[k]]);
@@ -208,8 +207,8 @@ vector<vector<coord>> PolygonsToTriangles(vector<vector<coord>> polygons) {
 		} else {
 			for (unsigned j=0; j<polygons[i].size()-2; j++) {
 				newTriangle.push_back(polygons[i][0]);
-				newTriangle.push_back(polygons[i][j+1]);	
-				newTriangle.push_back(polygons[i][j+2]);	
+				newTriangle.push_back(polygons[i][j+1]);
+				newTriangle.push_back(polygons[i][j+2]);
 				triangles.push_back(newTriangle);
 				newTriangle.clear();
 			}
@@ -223,7 +222,7 @@ vector<vector<coord>> ScaleTriangles(vector<vector<coord>> triangles) {
 	float minX = triangles[0][0].x;
 	float minY = triangles[0][0].y;
 	float minZ = triangles[0][0].z;
-	float maxAll = triangles[0][0].x;	
+	float maxAll = triangles[0][0].x;
 	unsigned triPoints = 3;
 
 	for (unsigned i=0; i<triangles.size(); i++) {
