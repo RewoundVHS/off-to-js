@@ -222,7 +222,6 @@ vector<vector<coord>> ScaleTriangles(vector<vector<coord>> triangles) {
 	float minX = triangles[0][0].x;
 	float minY = triangles[0][0].y;
 	float minZ = triangles[0][0].z;
-	float maxAll = triangles[0][0].x;
 	unsigned triPoints = 3;
 
 	for (unsigned i=0; i<triangles.size(); i++) {
@@ -247,6 +246,8 @@ vector<vector<coord>> ScaleTriangles(vector<vector<coord>> triangles) {
 			triangles[k][l].z += minY;
 		}
 	}
+	
+	float maxAll = triangles[0][0].x;
 
 	for (unsigned m=0; m<triangles.size(); m++) {
 		for (unsigned n=0; n<triPoints; n++) {
