@@ -24,7 +24,7 @@ vector<vector<coord>> ScaleTriangles(vector<vector<coord>> triangles);
 int main(int argc, char **argv) {
 
 	if (argc == 3) {
-		string modelName = argv[1];
+        string modelName = argv[1];
 		string filename = argv[2];
 		filename = filename.c_str();
 		string line;
@@ -242,11 +242,11 @@ vector<vector<coord>> ScaleTriangles(vector<vector<coord>> triangles) {
 	for (unsigned k=0; k<triangles.size(); k++) {
 		for (unsigned l=0; l<triPoints; l++) {
 			triangles[k][l].x += minX;
-			triangles[k][l].y += minZ;
-			triangles[k][l].z += minY;
+			triangles[k][l].y += minY;
+			triangles[k][l].z += minZ;
 		}
 	}
-	
+
 	float maxAll = triangles[0][0].x;
 
 	for (unsigned m=0; m<triangles.size(); m++) {
